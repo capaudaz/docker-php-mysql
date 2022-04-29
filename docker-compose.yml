@@ -18,7 +18,7 @@ services:
     volumes:
       #- ./dbconfig:/etc/mysql
       - ./db:/var/lib/mysql
-    restart: always
+    restart: unless-stopped
 
   php:
     build:
@@ -32,11 +32,11 @@ services:
       - ./www:/var/www/html
     links:
       - mysql
-    restart: always
+    restart: unless-stopped
 
   adminer:
     image: adminer
     restart: unless-stopped
     ports:
       - 8096:8080
-    restart: always
+    restart: unless-stopped
